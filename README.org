@@ -31,7 +31,7 @@ For a patched SBCL with additional ~defpackage~ options see my [[https://github.
   That does not discard any created symbol links, so if you re-enable the hack
   all links will be restored.
 * Description
-  Symbol links attempt to provide similar functionality to python's ~import as~
+  Symbol links attempt to provide similar functionality to python's ~from import as~
   #+BEGIN_SRC python
   from math import factorial as f
   #+END_SRC
