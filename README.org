@@ -71,13 +71,13 @@ For a patched SBCL with additional ~defpackage~ options see my [[https://github.
      (+ 10)  ; => 10
      (symbol-links:unlink +)
      ;; or with an underlying function
-     ;; (symbol-links:remove-symbol-link +)
+     ;; (symbol-links:remove-symbol-link '+)
      (setf symbol-links:*follow-symbol-links* t)
      (+ 10)  ; => 10
      #+END_SRC
   3. You can define a reader macro that reads with ~*follow-symbol-links*~ set
      to ~NIL~ and use it to reference symbol that has an outgoing link:
-     #+BEGIN_SRC
+     #+BEGIN_SRC common-lisp
      (defun |@-reader| (stream char)
        (declare (ignore char))
        (symbol-links:without-symbol-links
