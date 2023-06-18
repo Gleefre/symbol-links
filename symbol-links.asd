@@ -3,4 +3,6 @@
   :version "0.0.1"
   :author "Grolter <varedif.a.s@gmail.com>"
   :license "Apache 2.0"
-  :components ((:file "symbol-links-hack")))
+  :components ((:file "package")
+               (:file "symbol-links-hack")
+               (:file "symbol-links-plus")))
