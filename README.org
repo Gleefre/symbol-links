@@ -37,7 +37,7 @@ For a patched SBCL with additional ~defpackage~ options see my [[https://github.
   #+END_SRC
   would translate to
   #+BEGIN_SRC common-lisp
-  (symbol-links:add-symbol-link 'f 'math:factorial)
+  (symbol-links:link f math:factorial)
   #+END_SRC
 
   You can create a /link/ from one symbol to another and it will be evaluated at
