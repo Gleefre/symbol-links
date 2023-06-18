@@ -59,19 +59,19 @@ For a patched SBCL with additional ~defpackage~ options see my [[https://github.
   1. Store symbol before creating a link:
      #+BEGIN_SRC common-lisp
      (defparameter *plus* '+)
-     (symbol-links:add-symbol-link '+ '-)
+     (symbol-links:link + -)
      (+ 10)  ; => -10
      (symbol-links:remove-symbol-link *plus*)
      (+ 10)  ; => 10
      #+END_SRC
   2. You can disable symbol links by modifying special variable ~*follow-symbol-links*~:
      #+BEGIN_SRC common-lisp
-     (symbol-links:add-symbol-link '+ '-)
+     (symbol-links:link + -)
      (setf symbol-links:*follow-symbol-links* nil)
      (+ 10)  ; => 10
-     (symbol-links:remove-symbol-link '+)
-     ;; or with a macro
-     ;; (symbol-links:unlink +)
+     (symbol-links:unlink +)
+     ;; or with an underlying function
+     ;; (symbol-links:remove-symbol-link +)
      (setf symbol-links:*follow-symbol-links* t)
      (+ 10)  ; => 10
      #+END_SRC
@@ -84,15 +84,15 @@ For a patched SBCL with additional ~defpackage~ options see my [[https://github.
          (read stream t nil t)))
      (set-macro-character #\@ #'|@-reader|)
 
-     (symbol-links:add-symbol-link '+ '-)
+     (symbol-links:link + -)
      '+   ; => -
      '@+  ; => +
-     (symbol-links:remove-symbol-link '@+ '-)
+     (symbol-links:unlink @+)
      (+ 10)  ; => 10
      #+END_SRC
   4. You can reference all symbols that are linked to some symbol with ~symbol-linked-by~ function:
      #+BEGIN_SRC common-lisp
-     (symbol-links:add-symbol-link '+ '-)
+     (symbol-links:link + -)
      (symbol-links:symbol-linked-by '-)
      ; => (COMMON-LISP:+)
      (symbol-links:remove-symbol-link (car *))
