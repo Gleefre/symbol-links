@@ -45,7 +45,9 @@ For a patched SBCL with additional ~defpackage~ options see my [[https://github.
 
   For example you can create a shorthand for ~multiple-value-bind~:
   #+BEGIN_SRC common-lisp
-  (symbol-links:add-symbol-link 'mvb 'multiple-value-bind)
+  (symbol-links:link mvb multiple-value-bind)
+  ;; or using the underlying function
+  ;; (symbol-links:add-symbol-link 'mvb 'multiple-value-bind)
   'mvb  ; => MULTIPLE-VALUE-BIND
   (mvb (x y) (values 1 2)
     (+ x y))
@@ -68,6 +70,8 @@ For a patched SBCL with additional ~defpackage~ options see my [[https://github.
      (setf symbol-links:*follow-symbol-links* nil)
      (+ 10)  ; => 10
      (symbol-links:remove-symbol-link '+)
+     ;; or with a macro
+     ;; (symbol-links:unlink +)
      (setf symbol-links:*follow-symbol-links* t)
      (+ 10)  ; => 10
      #+END_SRC
@@ -80,6 +84,12 @@ For a patched SBCL with additional ~defpackage~ options see my [[https://github.
      (+ 10)  ; => 10
      #+END_SRC
 * API
+** ~*follow-symbol-links*~ [special variable]
+   Set this variable to ~T~ to enable following symbol links.
+   Set this variable to ~NIL~ to disable following symbol links.
+** without-symbol-links [macro]
+   : (without-symbol-link &body body)
+   Binds ~*follow-symbol-links*~ to ~NIL~ during the execution of the ~body~.
 ** add-symbol-link
    : (add-symbol-link from to) => created-p
    Adds a symbol link from symbol ~from~ to symbol ~to~.
@@ -89,11 +99,20 @@ For a patched SBCL with additional ~defpackage~ options see my [[https://github.
     Signals an correctable error if there is a conflicting link going from symbol ~from~.
 
     Signals an error if a circular link is about to be created.
+** link [macro]
+   : (link from to) => created-p
+   Same as ~add-symbol-link~ but ~from~ and ~to~ must be unquoted.
 ** remove-symbol-link
    : (remove-symbol-link symbol) => removed-p
    Removes a symbol link going from ~symbol~ if there is any.
 
    Returns ~T~ if the link was removed and ~NIL~ otherwise.
+** unlink [macro]
+   : (unlink symbol) => removed-p
+   Same as ~remove-symbol-link~ but ~symbol~ must be unquoted.
+** relink [macro]
+   : (relink from to) => created-p
+   Same as ~link~, but removes any prior link going from ~from~.
 ** symbol-link
    : (symbol-link symbol) => link, link-p
    If there is a link going from ~symbol~ returns the symbol it points to and ~T~.
