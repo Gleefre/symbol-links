@@ -78,16 +78,16 @@ For a patched SBCL with additional ~defpackage~ options see my [[https://github.
   3. You can define a reader macro that reads with ~*follow-symbol-links*~ set
      to ~NIL~ and use it to reference symbol that has an outgoing link:
      #+BEGIN_SRC common-lisp
-     (defun |@-reader| (stream char)
-       (declare (ignore char))
+     (defun |#@-reader| (stream char arg)
+       (declare (ignore char arg))
        (symbol-links:without-symbol-links
          (read stream t nil t)))
-     (set-macro-character #\@ #'|@-reader|)
+     (set-dispatch-macro-character #\# #\@ #'|#@-reader|)
 
      (symbol-links:link + -)
      '+   ; => -
-     '@+  ; => +
-     (symbol-links:unlink @+)
+     '#@+  ; => +
+     (symbol-links:unlink #@+)
      (+ 10)  ; => 10
      #+END_SRC
   4. You can reference all symbols that are linked to some symbol with ~symbol-linked-by~ function:
