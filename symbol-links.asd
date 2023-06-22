@@ -3,6 +3,7 @@
   :version "0.0.1"
   :author "Grolter <varedif.a.s@gmail.com>"
   :license "Apache 2.0"
+  :pathname "src"
   :components ((:file "package")
                (:file "symbol-links-base")
                (:file "symbol-links-plus")
