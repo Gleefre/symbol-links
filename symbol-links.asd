@@ -5,4 +5,5 @@
   :license "Apache 2.0"
   :components ((:file "package")
                (:file "symbol-links-base")
-               (:file "symbol-links-plus")))
+               (:file "symbol-links-plus")
+               #+sbcl (:file "sbcl-hack")))
