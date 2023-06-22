@@ -6,4 +6,5 @@
   :components ((:file "package")
                (:file "symbol-links-base")
                (:file "symbol-links-plus")
-               #+sbcl (:file "sbcl-hack")))
+               #+sbcl (:file "sbcl-hack")
+               #+lispworks (:file "lispworks-hack")))
