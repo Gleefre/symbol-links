@@ -4,5 +4,5 @@
   :author "Grolter <varedif.a.s@gmail.com>"
   :license "Apache 2.0"
   :components ((:file "package")
-               (:file "symbol-links-hack")
+               (:file "symbol-links-base")
                (:file "symbol-links-plus")))
