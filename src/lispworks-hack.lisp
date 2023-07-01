@@ -22,4 +22,5 @@
     (let ((lispworks:*handle-warn-on-redefinition* nil))
       (defun system::find-symbol* (string length package)
         (funcall +%find-symbol+ string length package)))
-    (setf *hacked!* nil)))
+    (setf *hacked!* nil)
+    t))

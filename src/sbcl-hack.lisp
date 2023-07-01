@@ -23,4 +23,5 @@
     (sb-ext:with-unlocked-packages (#:sb-impl)
       (defun sb-impl::%find-symbol (string length package)
         (funcall +%find-symbol+ string length package)))
-    (setf *hacked!* nil)))
+    (setf *hacked!* nil)
+    t))
