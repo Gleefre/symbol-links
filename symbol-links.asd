@@ -9,4 +9,5 @@
                (:file "symbol-links-plus")
                #+sbcl (:file "sbcl-hack")
                #+lispworks (:file "lispworks-hack")
-               #+ccl (:file "ccl-hack")))
+               #+ccl (:file "ccl-hack")
+               #+cmucl (:file "cmucl-hack")))
