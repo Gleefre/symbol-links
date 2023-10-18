@@ -8,4 +8,5 @@
                (:file "symbol-links-base")
                (:file "symbol-links-plus")
                #+sbcl (:file "sbcl-hack")
-               #+lispworks (:file "lispworks-hack")))
+               #+lispworks (:file "lispworks-hack")
+               #+ccl (:file "ccl-hack")))
