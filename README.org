@@ -5,7 +5,7 @@
 #+language: en
 #+options: toc:nil
 
-This is a hack that enables symbol links. Works on SBCL and Lispworks (thanks to phoe).
+This is a hack that enables symbol links. Works on SBCL, CMUCL, CCL and Lispworks (thanks to phoe).
 
 For a patched SBCL with additional ~defpackage~ options see my [[https://github.com/Gleefre/sbcl/tree/symbol-links][fork]].
 * Installation
