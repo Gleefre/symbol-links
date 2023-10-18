@@ -4,7 +4,9 @@
 
 (defparameter *hacked!* nil)
 
-(defconstant +%find-symbol+ (fdefinition 'system::find-symbol*))
+(defconstant +%find-symbol+ (if (boundp '+%find-symbol+)
+                                (symbol-value '+%find-symbol+)
+                                (fdefinition 'system::find-symbol*)))
 
 (defun enable-hack! ()
   (unless *hacked!*
