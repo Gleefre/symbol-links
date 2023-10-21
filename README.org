@@ -8,6 +8,8 @@
 This is a hack that enables symbol links. Works on SBCL, CMUCL, CCL and Lispworks (thanks to phoe).
 
 For a patched SBCL with additional ~defpackage~ options see my [[https://github.com/Gleefre/sbcl/tree/symbol-links][fork]].
+* Related work
+  See [[https://github.com/tfeb/symbol-nicknames][symbol-nicknames]] for a lengthy discussion on the theme.
 * Installation
   Clone this repository to =~/quicklisp/local-projects= directory and load the
   system with ~ql:quickload~ or ~asdf:load-system~:
